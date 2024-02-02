@@ -37,8 +37,8 @@
 ** SAMPLE Configuration
 */
 #define SAMPLE_CFG
-#define SAMPLE_CFG_STRING           "usart_29"
-#define SAMPLE_CFG_HANDLE           29 
+#define SAMPLE_CFG_STRING           "usart_16"
+#define SAMPLE_CFG_HANDLE           16 
 #define SAMPLE_CFG_BAUDRATE_HZ      115200
 #define SAMPLE_CFG_MS_TIMEOUT       50            /* Max 255 */
 //#define SAMPLE_CFG_DEBUG
@@ -50,7 +50,7 @@
 #define GENERIC_RADIO_CFG_PROX_DATA_SIZE   64
 #define GENERIC_RADIO_CFG_FSW_IP           "nos_fsw"
 #define GENERIC_RADIO_CFG_DEVICE_IP        "radio_sim"
-#define GENERIC_RADIO_CFG_DEVICE_DELAY_MS  10
+#define GENERIC_RADIO_CFG_DEVICE_DELAY_MS  250
 #define GENERIC_RADIO_CFG_UDP_PROX_TO_FSW  7010
 #define GENERIC_RADIO_CFG_UDP_FSW_TO_PROX  7011
 #define GENERIC_RADIO_CFG_UDP_FSW_TO_RADIO 5014
