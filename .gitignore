@@ -12,3 +12,4 @@ build
 support/nos3_install.log
 tmp
 core.*
+.env
