@@ -19,10 +19,10 @@ def collect(file):
 
 # Load environment variables
 load_dotenv()
-DATA_FILE = os.getenv("DATA_FILE")
+#DATA_FILE = os.getenv("DATA_FILE")
 HMAC_KEY = os.getenv("HMAC_KEY")
 API_KEY = os.getenv("API_KEY")
-
+DATA_FILE = 'csv.csv'
 # Create empty HMAC signature
 emptySignature = ''.join(['0'] * 64)
 
@@ -39,10 +39,14 @@ ROUNDS = 100
 
 values = []
 for i in range(ROUNDS):
-    x = collect(COLLECTION_FILE)
-    values.append(x)
+    x = collect(DATA_FILE).rstrip()    # Grab last line of the CSV and strip control chars
+    y = x.split(',')                   # Split the CSV string into an array
+    for j in range(len(y)):
+        y[j] = float(y[j])             # Convert strings to float
+    values.append(y)                
     time.sleep(freq)
 
+print(values)
 # ---------- BELOW FROM https://github.com/edgeimpulse/linux-sdk-python/blob/master/examples/custom/collect.py
 
 data = {
@@ -54,12 +58,12 @@ data = {
     "signature": emptySignature,
     "payload": {
         "device_name":  device_name,
-        "device_type": "LINUX_TEST",
+        "device_type": "NOS3_TEST",
         "interval_ms": INTERVAL_MS,
         "sensors": [
-            { "name": "accX", "units": "m/s2" },
-            { "name": "accY", "units": "m/s2" },
-            { "name": "accZ", "units": "m/s2" }
+            { "name": "wattHrs", "units": "W" },
+            { "name": "voltage", "units": "V" },
+            { "name": "placeholder", "units": "W" }
         ],
         "values": values
     }
@@ -82,7 +86,7 @@ res = requests.post(url='https://ingestion.edgeimpulse.com/api/training/data',
                     data=encoded,
                     headers={
                         'Content-Type': 'application/json',
-                        'x-file-name': 'idle01',
+                        'x-file-name': 'test1',
                         'x-api-key': API_KEY
                     })
 if (res.status_code == 200):
