@@ -13,3 +13,5 @@ support/nos3_install.log
 tmp
 core.*
 .env
+.idea
+csv.csv
